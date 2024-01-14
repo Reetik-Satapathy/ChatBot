@@ -13,18 +13,6 @@ genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat(history=[])
 
-config = {"max_output_tokens": 100,
-          "temperature": 0.5,
-          "top_p": 1,
-          "top_k": 32
-          }
-
-
-def get_response(question):
-    answer = model.generate_content(question, generation_config=config, stream=True)
-    return answer
-
-
 def to_markdown(text):
     text = text.replace('•', '  *')
     return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
